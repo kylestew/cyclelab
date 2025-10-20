@@ -101,10 +101,7 @@ canvas {
 }
 
 #editor-canvas {
-    width: 90%;
-    height: 90%;
-    max-width: 90%;
-    max-height: 90%;
+    /* Size will be set by JavaScript */
 }
 
 .controls {

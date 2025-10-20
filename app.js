@@ -54,6 +54,7 @@ class CycleLabApp {
             this.editor.updateLevels(levels)
             this.levelsDisplay.textContent = levels
             this.scrubSlider.max = levels - 1
+            this.editor.resizeCanvas() // Resize canvas when levels change
             this.createPaletteSelector()
             this.renderPreview()
         })
@@ -131,6 +132,13 @@ class CycleLabApp {
         this.animator.setOnOffsetChange((offset) => {
             this.scrubSlider.value = offset
         })
+
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            this.editor.resizeCanvas()
+            this.editor.render()
+            this.renderPreview()
+        })
     }
 
     setResolution(size) {
@@ -142,6 +150,7 @@ class CycleLabApp {
         // Resize buffer and update editor
         this.buffer.resize(size, size)
         this.editor.resizeBuffer(size, size)
+        this.editor.resizeCanvas() // Resize canvas for new buffer
         this.animator.updateBuffer(this.buffer)
         this.createPaletteSelector()
         this.renderPreview()

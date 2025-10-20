@@ -113,6 +113,7 @@ export class Editor {
 
         this.setupEventListeners()
         this.saveSnapshot() // Initial state
+        this.resizeCanvas()
     }
 
     setupEventListeners() {
@@ -214,19 +215,28 @@ export class Editor {
         return this.currentLevel
     }
 
+    // Resize canvas to take up 90% of parent's smallest dimension
+    resizeCanvas() {
+        const container = this.canvas.parentElement
+        const containerRect = container.getBoundingClientRect()
+
+        // Get 90% of the smaller dimension
+        const smallerDimension = Math.min(containerRect.width, containerRect.height)
+        const targetSize = Math.floor(smallerDimension * 0.9)
+
+        // Set canvas size to target size (square)
+        this.canvas.style.width = targetSize + 'px'
+        this.canvas.style.height = targetSize + 'px'
+
+        // Also set the actual canvas resolution to match
+        this.canvas.width = targetSize
+        this.canvas.height = targetSize
+    }
+
     // Calculate pixel size for display
     getPixelSize() {
-        const canvasRect = this.canvas.getBoundingClientRect()
-        const availableWidth = canvasRect.width
-        const availableHeight = canvasRect.height
-        
-        // Use 90% of the smaller dimension to maximize size while maintaining aspect ratio
-        const smallerDimension = Math.min(availableWidth, availableHeight)
-        const targetSize = Math.floor(smallerDimension * 0.9)
-        
-        // Calculate pixel size based on target size
-        const pixelSize = Math.floor(targetSize / Math.max(this.buffer.width, this.buffer.height))
-        
+        // Calculate pixel size based on canvas size and buffer dimensions
+        const pixelSize = Math.floor(this.canvas.width / Math.max(this.buffer.width, this.buffer.height))
         return Math.max(1, pixelSize) // Ensure minimum pixel size of 1
     }
 
