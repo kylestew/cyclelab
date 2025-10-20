@@ -74,6 +74,37 @@ export class PixelBuffer {
         this.pixels.fill(0)
     }
 
+    // Generate a cycling pattern that creates interesting animation effects
+    generateCyclingPattern() {
+        // Create a radial gradient pattern that shifts with cycling
+        const centerX = this.width / 2
+        const centerY = this.height / 2
+        const maxRadius = Math.min(this.width, this.height) / 2
+
+        for (let y = 0; y < this.height; y++) {
+            for (let x = 0; x < this.width; x++) {
+                // Calculate distance from center
+                const dx = x - centerX
+                const dy = y - centerY
+                const distance = Math.sqrt(dx * dx + dy * dy)
+
+                // Create concentric circles with varying brightness
+                const normalizedDistance = distance / maxRadius
+                const circlePhase = Math.sin(normalizedDistance * Math.PI * 4) * 0.5 + 0.5
+
+                // Add some noise and spiral effect
+                const angle = Math.atan2(dy, dx)
+                const spiral = Math.sin(angle * 3 + normalizedDistance * Math.PI * 2) * 0.3 + 0.7
+
+                // Combine effects and map to brightness levels
+                const brightness = circlePhase * spiral * 0.8 + 0.2
+                const level = Math.floor(brightness * (this.levels - 1))
+
+                this.pixels[y * this.width + x] = Math.max(0, Math.min(level, this.levels - 1))
+            }
+        }
+    }
+
     // Resize buffer
     resize(newWidth, newHeight) {
         const newPixels = new Array(newWidth * newHeight).fill(0)
@@ -248,7 +279,7 @@ export class Editor {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         // Fill background
-        this.ctx.fillStyle = '#f0f0f0'
+        this.ctx.fillStyle = '#1a1a1a'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
         // Calculate drawing area dimensions
@@ -274,7 +305,7 @@ export class Editor {
         }
 
         // Draw grid
-        this.ctx.strokeStyle = '#ddd'
+        this.ctx.strokeStyle = '#444'
         this.ctx.lineWidth = 1
 
         for (let x = 0; x <= this.buffer.width; x++) {

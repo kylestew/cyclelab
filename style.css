@@ -9,8 +9,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 14px;
-    background: #f5f5f5;
-    color: #333;
+    background: #1a1a1a;
+    color: #e0e0e0;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -22,7 +22,7 @@ body {
     height: 100vh;
     width: 100vw;
     gap: 1px;
-    background: #ddd;
+    background: #333;
     overflow: hidden;
 }
 
@@ -30,7 +30,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: white;
+    background: #2a2a2a;
     overflow: hidden;
     min-width: 0;
 }
@@ -39,15 +39,15 @@ body {
     flex: 2;
     display: flex;
     flex-direction: column;
-    background: white;
+    background: #2a2a2a;
     overflow: hidden;
     min-width: 0;
 }
 
 .panel-header {
     padding: 12px 16px;
-    border-bottom: 1px solid #ddd;
-    background: #f9f9f9;
+    border-bottom: 1px solid #444;
+    background: #333;
 }
 
 .panel-header h2 {
@@ -62,7 +62,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background: #fafafa;
+    background: #1a1a1a;
     overflow: hidden;
     min-height: 0;
 }
@@ -77,14 +77,14 @@ body {
 .palette-color {
     width: 24px;
     height: 24px;
-    border: 2px solid #ccc;
+    border: 2px solid #666;
     border-radius: 4px;
     cursor: pointer;
     transition: border-color 0.1s;
 }
 
 .palette-color:hover {
-    border-color: #666;
+    border-color: #888;
 }
 
 .palette-color.active {
@@ -106,8 +106,8 @@ canvas {
 
 .controls {
     padding: 12px;
-    border-top: 1px solid #ddd;
-    background: white;
+    border-top: 1px solid #444;
+    background: #2a2a2a;
     overflow-y: auto;
     max-height: 50vh;
 }
@@ -124,7 +124,7 @@ canvas {
     display: block;
     font-weight: 500;
     margin-bottom: 4px;
-    color: #555;
+    color: #ccc;
 }
 
 .playback-controls {
@@ -141,8 +141,9 @@ canvas {
 
 button {
     padding: 6px 12px;
-    border: 1px solid #ccc;
-    background: white;
+    border: 1px solid #555;
+    background: #404040;
+    color: #e0e0e0;
     border-radius: 4px;
     font-size: 13px;
     cursor: pointer;
@@ -150,11 +151,11 @@ button {
 }
 
 button:hover {
-    background: #f0f0f0;
+    background: #505050;
 }
 
 button:active {
-    background: #e0e0e0;
+    background: #353535;
 }
 
 button.active {
@@ -175,17 +176,20 @@ input[type='range'] {
 input[type='number'] {
     width: 60px;
     padding: 4px 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #555;
     border-radius: 3px;
     font-size: 13px;
+    background: #404040;
+    color: #e0e0e0;
 }
 
 select {
     padding: 4px 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #555;
     border-radius: 3px;
     font-size: 13px;
-    background: white;
+    background: #404040;
+    color: #e0e0e0;
 }
 
 /* Responsive adjustments */

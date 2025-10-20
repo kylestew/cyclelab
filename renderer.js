@@ -42,7 +42,7 @@ export class Renderer {
         const palette = this.generatePalette(buffer.levels)
 
         // Clear canvas with background
-        this.ctx.fillStyle = '#f0f0f0'
+        this.ctx.fillStyle = '#1a1a1a'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
         // Create image data for efficient rendering
@@ -104,7 +104,7 @@ export class Renderer {
 
     // Draw grid overlay
     drawGrid(width, height, scaleX, scaleY) {
-        this.ctx.strokeStyle = '#ddd'
+        this.ctx.strokeStyle = '#444'
         this.ctx.lineWidth = 1
 
         // Vertical lines
@@ -143,7 +143,7 @@ export class Renderer {
 
     // Clear canvas
     clear() {
-        this.ctx.fillStyle = '#f0f0f0'
+        this.ctx.fillStyle = '#1a1a1a'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
     }
 

@@ -43,6 +43,7 @@ class CycleLabApp {
         this.setupEventListeners()
         this.updateUI()
         this.createPaletteSelector()
+        this.loadDefaultPattern()
         this.renderPreview()
     }
 
@@ -290,6 +291,17 @@ class CycleLabApp {
         paletteColors.forEach((color, index) => {
             color.classList.toggle('active', index === level)
         })
+    }
+
+    loadDefaultPattern() {
+        // Generate the cycling pattern
+        this.buffer.generateCyclingPattern()
+
+        // Save the initial state for undo functionality
+        this.editor.saveSnapshot()
+
+        // Update the editor display
+        this.editor.render()
     }
 
     // Initialize the app
